@@ -1,15 +1,10 @@
 package com.example.userservice.userservice;
-
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @SpringBootApplication
 public class UserserviceApplication {
 
@@ -17,16 +12,37 @@ public class UserserviceApplication {
 		SpringApplication.run(UserserviceApplication.class, args);
 	}
 
-}
-@RefreshScope
-@RestController
-class MessageRestController {
 
-	@Value("${message:Hello default}")
-	private String message;
+	/*
+	@RefreshScope
+	@RestController
+	class MessageRestController {
 
-	@RequestMapping("/message")
-	String getMessage() {
-		return this.message;
+		@Value("${message:Hello default}")
+		private String message;
+
+		@RequestMapping("/message")
+		String getMessage() {
+			return this.message;
+		}
+
+		@PostMapping("/refresh")
+	   String setMessage(@RequestBody String message) {
+			return this.setMessage(message);
+		}
+	}
+	*/
+	@RefreshScope
+	@RestController
+	@RequestMapping("/api/test")
+	class TestController {
+
+		@Value("${test.name}")
+		private String name;
+
+		@GetMapping
+		public String test() {
+			return name;
+		}
 	}
 }
