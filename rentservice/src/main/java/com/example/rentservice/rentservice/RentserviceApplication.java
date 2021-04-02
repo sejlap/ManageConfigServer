@@ -9,7 +9,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 public class RentserviceApplication {
 
